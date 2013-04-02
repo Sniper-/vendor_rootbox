@@ -29,14 +29,19 @@ PRODUCT_PACKAGES += \
 
 # CM Packages
 PRODUCT_PACKAGES += \
-        audio_effects.conf \
-	DSPManager \
-        libcyanogen-dsp \
-        LockClock
+    audio_effects.conf \
+    DSPManager \
+    libcyanogen-dsp \
+    LockClock
+
+# PA Packages
+PRODUCT_PACKAGES += \
+    ParanoidPreferences
 
 # RootBox build.prop tweaks
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ril.enable.amr.wideband=1
+    ro.ril.enable.amr.wideband=1 \
+    ro.pa.family=$(OVERLAY_TARGET)
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
@@ -47,11 +52,27 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
     ro.setupwizard.enterprise_mode=1 \
     windowsmgr.max_events_per_sec=240 \
-    ro.kernel.android.checkjni=0
+    ro.kernel.android.checkjni=0 \
+    persist.sys.root_access=3
 
 PRODUCT_COPY_FILES += \
     vendor/rootbox/prebuilt/common/lib/libmicrobes_jni.so:system/lib/libmicrobes_jni.so \
     vendor/rootbox/prebuilt/common/etc/resolv.conf:system/etc/resolv.conf
+
+# ParanoidAndroid Overlays
+PRODUCT_PACKAGE_OVERLAYS += vendor/rootbox/prebuilt/preferences/$(TARGET_PRODUCT)
+
+# Allow device family to add overlays and use a same prop.conf
+ifneq ($(OVERLAY_TARGET),)
+    PRODUCT_PACKAGE_OVERLAYS += vendor/rootbox/overlay/$(OVERLAY_TARGET)
+    PA_CONF_SOURCE := $(OVERLAY_TARGET)
+else
+    PA_CONF_SOURCE := $(TARGET_PRODUCT)
+endif
+
+PRODUCT_COPY_FILES += \
+    vendor/rootbox/prebuilt/$(PA_CONF_SOURCE).conf:system/etc/paranoid/properties.conf \
+    vendor/rootbox/prebuilt/$(PA_CONF_SOURCE).conf:system/etc/paranoid/backup.conf
 
 # init.d
 PRODUCT_COPY_FILES += \
