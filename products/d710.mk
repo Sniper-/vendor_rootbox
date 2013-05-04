@@ -10,6 +10,8 @@ $(call inherit-product, vendor/rootbox/configs/common.mk)
 # D710 Overlays
 PRODUCT_PACKAGE_OVERLAYS += vendor/rootbox/overlay/d710
 
+# PA OVERLAY_TARGET
+OVERLAY_TARGET := pa_hdpi
 
 # Setup device specific product configuration.
 PRODUCT_NAME := rootbox_d710
