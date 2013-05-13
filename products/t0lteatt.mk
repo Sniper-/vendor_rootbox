@@ -1,5 +1,5 @@
-# Inherit AOSP device configuration for galaxys2.
-$(call inherit-product, device/samsung/n7100/full_n7100.mk)
+# Inherit AOSP device configuration for t0lte.
+$(call inherit-product, device/samsung/t0lteatt/full_t0lteatt.mk)
 
 # Inherit GSM common stuff
 $(call inherit-product, vendor/rootbox/configs/gsm.mk)
@@ -14,16 +14,17 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/rootbox/overlay/note-common
 OVERLAY_TARGET := pa_xhdpi
 
 # Setup device specific product configuration.
-PRODUCT_NAME := rootbox_n7100
+PRODUCT_NAME := rootbox_t0lteatt
 PRODUCT_BRAND := Samsung
-PRODUCT_DEVICE := n7100
-PRODUCT_MODEL := GT-N7100
+PRODUCT_DEVICE := t0lteatt
+PRODUCT_MODEL := SGH-I317
 PRODUCT_MANUFACTURER := samsung
 
 # Set build fingerprint / ID / Product Name ect.
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=t03gxx TARGET_DEVICE=t03g BUILD_FINGERPRINT="samsung/t03gxx/t03g:4.1.1/JRO03C/N7100XXALJ3:user/release-keys" PRIVATE_BUILD_DESC="t03gxx-user 4.1.1 JRO03C N7100XXALJ3 release-keys"
-PRODUCT_RELEASE_NAME := GT-N7100
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=t0lteatt TARGET_DEVICE=t0lteatt BUILD_FINGERPRINT="samsung/t0lteatt/t0lteatt:4.1.2/JZO54K/I317UCAMA4:user/release-keys" PRIVATE_BUILD_DESC="t0lteatt-user 4.1.2 JZO54K I317UCAMA4 release-keys"
+PRODUCT_RELEASE_NAME := t0lteatt
 
 # Copy Bootanimation
 PRODUCT_COPY_FILES += \
     vendor/rootbox/prebuilt/xhdpi/bootanimation.zip:system/media/bootanimation.zip
+

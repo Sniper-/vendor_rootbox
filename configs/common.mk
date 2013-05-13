@@ -24,7 +24,8 @@ PRODUCT_PACKAGES += \
 
 # RootBox Packages
 PRODUCT_PACKAGES += \
-    RootBox
+    RootBox \
+    Trebuchet
 
 # CM Packages
 PRODUCT_PACKAGES += \
@@ -122,3 +123,9 @@ PRODUCT_COPY_FILES += packages/wallpapers/LivePicker/android.software.live_wallp
 
 # T-Mobile theme engine
 include vendor/rootbox/configs/themes_common.mk
+
+# Bring in all audio files
+include frameworks/base/data/sounds/NewAudio.mk
+
+# Extra Ringtones
+include frameworks/base/data/sounds/AudioPackageNewWave.mk
